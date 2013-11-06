@@ -1,6 +1,6 @@
 TODO:
 
--	quitar la opción de pos del servicio web para que devuelva todos los resultados independientemente del postagging
+-	[x] quitar la opción de pos del servicio web para que devuelva todos los resultados independientemente del postagging
 -	cargar los resultados por AJAX (sin refresco de página)
 -	enlazar los scores con el valor input del formulario (para que lo coja al enviar)
 -	Identificar tripletas ya etiquetadas

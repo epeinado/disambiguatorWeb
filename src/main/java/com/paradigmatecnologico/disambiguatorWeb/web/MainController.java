@@ -31,17 +31,16 @@ public class MainController {
     @Autowired
     ScoresService scoresService;
 
-    private static String URL = "http://54.200.220.111:8888/get_word_information?word={word}&language={language}&pos={pos}";
+    private static String URL = "http://54.200.220.111:8888/get_word_information?word={word}&language={language}";
 
 
-    private WordInformation getWordInformation(String word, String pos, String language) {
+    private WordInformation getWordInformation(String word, String language) {
         // Create the RestTemplate
         RestTemplate rest = new RestTemplate();
         // Set the parameters
         Map<String, String> params = new HashMap<String, String>();
         params.put("word", word);
         params.put("language", language);
-        params.put("pos", pos);
 
         List<HttpMessageConverter<?>> converters = rest.getMessageConverters();
         converters.add(new MappingJacksonHttpMessageConverter());
@@ -57,7 +56,7 @@ public class MainController {
         model.addAttribute("word", word);
         model.addAttribute("topic", topic);
         model.addAttribute("domain", domain);
-        Collection<Synset> synsets = getWordInformation(word, "n", "english").getSynsets().values();
+        Collection<Synset> synsets = getWordInformation(word, "english").getSynsets().values();
         model.addAttribute("synsets", synsets);
         return new ModelAndView("main", model);
     }
