@@ -350,6 +350,10 @@ ul {
     margin-bottom: 10px;
 }
 
+.tagged {
+    background: rgba(105, 105, 105, 0.88);
+}
+
 .wrapper_list ul {
     margin: auto;
     position: relative;

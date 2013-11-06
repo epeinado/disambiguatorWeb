@@ -57,6 +57,9 @@ public class MainController {
         model.addAttribute("topic", topic);
         model.addAttribute("domain", domain);
         Collection<Synset> synsets = getWordInformation(word, "english").getSynsets().values();
+        for(Synset synset:synsets) {
+            synset.setTagged(scoresService.doesScoreExist(domain, topic, word, synset.getSynset()));
+        }
         model.addAttribute("synsets", synsets);
         return new ModelAndView("main", model);
     }

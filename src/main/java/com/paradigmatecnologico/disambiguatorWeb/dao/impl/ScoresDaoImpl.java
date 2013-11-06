@@ -48,10 +48,27 @@ public class ScoresDaoImpl implements ScoresDao {
     @Transactional(readOnly = true)
     public Scores getScores(String domain, String topic, String word) {
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Scores> result = em.createQuery("select s from Scores s where s.domain = :domain" +
+        TypedQuery<Scores> query = em.createQuery("select s from Scores s where s.domain = :domain" +
                 " and s.topic = :topic" +
                 " and s.word = :word", Scores.class);
-        return result.getSingleResult();
+        query.setParameter("domain", domain);
+        query.setParameter("topic", topic);
+        query.setParameter("word", word);
+        return query.getSingleResult();
+    }
+
+    @Transactional(readOnly = true)
+    public boolean doesScoreExist(String domain, String topic, String word, String synset) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Scores> query = em.createQuery("select s from Scores s where s.domain = :domain" +
+                " and s.topic = :topic" +
+                " and s.word = :word" +
+                " and s.synset = :synset", Scores.class);
+        query.setParameter("domain", domain);
+        query.setParameter("topic", topic);
+        query.setParameter("word", word);
+        query.setParameter("synset", synset);
+        return query.getResultList().size() > 0;
     }
 
 //    private boolean exists (Scores scores) {

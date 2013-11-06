@@ -16,6 +16,8 @@ public interface ScoresDao {
 
     public void saveOrUpdateScores(Scores scores);
 
+    public boolean doesScoreExist(String domain, String topic, String word, String synset);
+
 //    public List<Usuario> getUsuariosList();
 //
 //    public void saveUsuario(Usuario prod);

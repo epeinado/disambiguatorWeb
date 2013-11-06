@@ -104,8 +104,7 @@
                 <%--<p>meaning : ${loop.meaning}</p>--%>
             <input type="hidden" name="meaning" value="${loop.meaning}">
 
-
-            <div class="wrapper_list">
+            <div class="wrapper_list ${loop.tagged?'tagged':''}">
                 <ul>
                     <li class="postagging">
                         <p>

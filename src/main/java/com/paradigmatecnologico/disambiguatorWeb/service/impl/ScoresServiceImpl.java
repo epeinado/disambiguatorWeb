@@ -23,4 +23,8 @@ public class ScoresServiceImpl implements ScoresService {
     public void saveScores(Scores scores) {
         scoresDao.saveOrUpdateScores(scores);
     }
+
+    public boolean doesScoreExist(String domain, String topic, String word, String synset) {
+        return scoresDao.doesScoreExist(domain, topic, word, synset);
+    }
 }

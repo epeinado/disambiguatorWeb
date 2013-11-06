@@ -12,4 +12,6 @@ public interface ScoresService {
     public Scores getScores(String domain, String topic, String word);
 
     public void saveScores(Scores scores);
+
+    public boolean doesScoreExist(String domain, String topic, String word, String synset);
 }

@@ -44,6 +44,8 @@ public class Synset {
     @JsonProperty("sentiment")
     Sentiment sentiment;
 
+    boolean tagged;
+
     public Synset() {
     }
 
@@ -133,5 +135,13 @@ public class Synset {
 
     public void setSentiment(Sentiment sentiment) {
         this.sentiment = sentiment;
+    }
+
+    public boolean isTagged() {
+        return tagged;
+    }
+
+    public void setTagged(boolean tagged) {
+        this.tagged = tagged;
     }
 }
