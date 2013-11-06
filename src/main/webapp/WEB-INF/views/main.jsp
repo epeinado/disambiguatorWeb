@@ -163,25 +163,25 @@
                             </li>
                         </ul>
                     </li>
-                    <input maxlength="6" class="rangevalue positivo" id="rangevalueP${loop.synset}" value="50.0%"
+                    <input maxlength="6" class="rangevalue positivo" id="rangevalueP${loop.synset}" value="50.0" name="positive"
                            onchange="if (value.substring(value.length-1) != '%') value = value + '%'; if (Number(value.substring(0,value.length-1)) > 100) value = '100%'; rangeinputP${loop.synset}.value=value.substring(0,value.length-1);"/>
 
                     <p id="titulo_rango" class="positivo"> Positivo </p>
                     <li id="slider">
                         <input class="bar" type="range" id="rangeinputP${loop.synset}" value="50.0" min="0.0"
                                max="100.0" step="0.1"
-                               onchange="rangevalueP${loop.synset}.value=value+'%'"/>
+                               onchange="rangevalueP${loop.synset}.value=value"/>
                         <span class="highlight"></span>
                     </li>
 
-                    <input maxlength="6" class="negativo rangevalue" id="rangevalueN${loop.synset}" value="50.0%"
+                    <input maxlength="6" class="negativo rangevalue" id="rangevalueN${loop.synset}" value="50.0" name="negative"
                            onchange="if (value.substring(value.length-1) != '%') value = value + '%'; if (Number(value.substring(0,value.length-1)) > 100) value = '100%'; rangeinputN${loop.synset}.value=value.substring(0,value.length-1)"/>
 
                     <p id="titulo_rango" class="negativo"> Negativo </p>
                     <li id="slider">
                         <input class="bar negativo" type="range" id="rangeinputN${loop.synset}" min="0.0" max="100.0"
                                step="0.1"
-                               value="50.0" onchange="rangevalueN${loop.synset}.value=value+'%'"/>
+                               value="50.0" onchange="rangevalueN${loop.synset}.value=value"/>
                         <span class="highlight"></span>
                     </li>
 
