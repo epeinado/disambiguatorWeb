@@ -15,7 +15,7 @@ public class Synset {
     String[] domain;
 
     @JsonProperty("pos")
-    char pos;
+    String pos;
 
     @JsonProperty("meaning")
     String meaning;
@@ -55,11 +55,11 @@ public class Synset {
         this.domain = domain;
     }
 
-    public char getPos() {
+    public String getPos() {
         return pos;
     }
 
-    public void setPos(char pos) {
+    public void setPos(String pos) {
         this.pos = pos;
     }
 
