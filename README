@@ -2,5 +2,10 @@ TODO:
 
 -	[x] quitar la opción de pos del servicio web para que devuelva todos los resultados independientemente del postagging
 -	cargar los resultados por AJAX (sin refresco de página)
--	[x] [Quitando los '%'] enlazar los scores con el valor input del formulario (para que lo coja al enviar)
+-	[x] enlazar los scores con el valor input del formulario (para que lo coja al enviar)
 -	[x] [Salvo algún problema con el estilo] Identificar tripletas ya etiquetadas
+-   [x] Se pre-cargan los datos de la BBDD en caso de que el elemento ya haya sido etiquetado
+-   [x] Ampliados textos de meaning y words y eliminado italian words
+-   [x] Corregir problemas con los '%', los slides y el envio de formularios
+-   [x] Añadidos estilos en botones
+
