@@ -65,8 +65,8 @@ public class MainController {
     }
 
     @RequestMapping(value="/saveResults.html", method = RequestMethod.GET)
-    public void saveResults(Scores scores) {
+    public ModelAndView saveResults(Scores scores) {
         scoresService.saveScores(scores);
-        System.out.println("miau");
+        return new ModelAndView("redirect:/main.html?domain="+scores.getDomain()+"&word="+scores.getWord()+"&topic="+scores.getTopic());
     }
 }
