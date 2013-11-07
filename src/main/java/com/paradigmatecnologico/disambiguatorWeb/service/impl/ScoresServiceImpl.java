@@ -16,8 +16,8 @@ public class ScoresServiceImpl implements ScoresService {
     @Autowired
     ScoresDao scoresDao;
 
-    public Scores getScores(String domain, String topic, String word) {
-        return scoresDao.getScores(domain, topic, word);
+    public Scores getScores(String domain, String topic, String word, String synset) {
+        return scoresDao.getScores(domain, topic, word, synset);
     }
 
     public void saveScores(Scores scores) {

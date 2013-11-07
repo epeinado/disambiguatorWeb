@@ -9,7 +9,7 @@ import com.paradigmatecnologico.disambiguatorWeb.domain.Scores;
  */
 public interface ScoresService {
 
-    public Scores getScores(String domain, String topic, String word);
+    public Scores getScores(String domain, String topic, String word, String synset);
 
     public void saveScores(Scores scores);
 

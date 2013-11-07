@@ -46,14 +46,16 @@ public class ScoresDaoImpl implements ScoresDao {
     }
 
     @Transactional(readOnly = true)
-    public Scores getScores(String domain, String topic, String word) {
+    public Scores getScores(String domain, String topic, String word, String synset) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Scores> query = em.createQuery("select s from Scores s where s.domain = :domain" +
                 " and s.topic = :topic" +
-                " and s.word = :word", Scores.class);
+                " and s.word = :word" +
+                " and s.synset = :synset", Scores.class);
         query.setParameter("domain", domain);
         query.setParameter("topic", topic);
         query.setParameter("word", word);
+        query.setParameter("synset", synset);
         return query.getSingleResult();
     }
 
@@ -81,26 +83,22 @@ public class ScoresDaoImpl implements ScoresDao {
 //
 //    }
 
+
     // Save or Update
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveOrUpdateScores(Scores scores) {
-//        scores.setId(1);
-//        Scores result = new Scores();
-//        result.setDomain(scores.getDomain());
-//        result.setNegative(scores.getNegative());
-//        result.setPos(scores.getPos());
-//        result.setPositive(scores.getPositive());
-//        result.setSynset(scores.getSynset());
-//        result.setTopic(scores.getTopic());
-//        result.setWord(scores.getWord());
-
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(scores);
-//                em.flush();
+        if (doesScoreExist(scores.getDomain(), scores.getTopic(), scores.getWord(), scores.getSynset())) {
+            Scores aux = getScores(scores.getDomain(), scores.getTopic(), scores.getWord(), scores.getSynset());
+            aux.setPositive(scores.getPositive());
+            aux.setNegative(scores.getNegative());
+            em.merge(aux);
+        } else {
+            em.persist(scores);
+        }
         em.getTransaction().commit();
         em.close();
-
     }
 
 }

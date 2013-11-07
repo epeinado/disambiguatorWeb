@@ -1,6 +1,7 @@
 package com.paradigmatecnologico.disambiguatorWeb.web;
 
 import com.paradigmatecnologico.disambiguatorWeb.domain.Scores;
+import com.paradigmatecnologico.disambiguatorWeb.domain.Sentiment;
 import com.paradigmatecnologico.disambiguatorWeb.domain.Synset;
 import com.paradigmatecnologico.disambiguatorWeb.domain.WordInformation;
 import com.paradigmatecnologico.disambiguatorWeb.service.ScoresService;
@@ -59,14 +60,20 @@ public class MainController {
         Collection<Synset> synsets = getWordInformation(word, "english").getSynsets().values();
         for(Synset synset:synsets) {
             synset.setTagged(scoresService.doesScoreExist(domain, topic, word, synset.getSynset()));
+            if (synset.isTagged()) {
+                Scores aux = scoresService.getScores(domain, topic, word, synset.getSynset());
+                Sentiment sentiment = new Sentiment(aux.getPositive(), aux.getNegative());
+                synset.setSentiment(sentiment);
+            }
         }
         model.addAttribute("synsets", synsets);
         return new ModelAndView("main", model);
     }
 
     @RequestMapping(value="/saveResults.html", method = RequestMethod.GET)
-    public void saveResults(Scores scores) {
+    public String saveResults(Scores scores) {
         scoresService.saveScores(scores);
-        System.out.println("miau");
+        return "redirect:main.html?domain="+scores.getDomain()+"&topic="+scores.getTopic()+"&word="+scores.getWord();
+//        System.out.println("miau");
     }
 }

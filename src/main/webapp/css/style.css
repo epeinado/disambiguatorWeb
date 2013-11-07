@@ -72,7 +72,7 @@ h3 {
 }
 
 #midrow {
-    width: 960px;
+    width: 1300px;
     margin: 0 auto;
 }
 
@@ -173,6 +173,7 @@ h3 {
 }
 
 .box {
+    text-align: center;
     margin-top: 20px;
     padding-top: 10px;
     width: 310px;
@@ -193,6 +194,7 @@ h3 {
 }
 
 .last {
+    padding-bottom: 50px;
     background: none;
 }
 
@@ -309,7 +311,7 @@ a.button {
 .textbox {
     float: left;
     padding: 50px 0px;
-    width: 700px;
+    width: 1200px;
 }
 
 .textbox2 {
@@ -342,9 +344,10 @@ ul {
 }
 
 .wrapper_list {
+    float: left;
     position: relative;
     margin: auto;
-    width: 850px;
+    width: 950px;
     background: rgba(10, 10, 10, 0.9);
     padding: 20px;
     margin-bottom: 10px;
@@ -368,7 +371,7 @@ ul {
     margin: auto;
     position: relative;
     float: left;
-    width: 165px;
+    width: 240px;
     padding-right: 10px;
     margin-right: 10px;
     height: 140px;
@@ -410,7 +413,7 @@ ul {
 }
 
 .wrapper_list ul li.contenedor_def {
-    width: 300px;
+    width: 380px;
     height: 150px;
     margin: 0;
     margin-right: 10px;
@@ -420,8 +423,8 @@ ul {
 .wrapper_list ul li.contenedor_def ul li.definicion {
     margin-top: 2px;
     margin-bottom: 8px;
-    height: 40px;
-    width: 300px;
+    height: 60px;
+    width: 380px;
 }
 
 .primero {
@@ -433,7 +436,7 @@ ul {
 }
 
 .wrapper_list ul li h1 {
-    font-size: 30px;
+    font-size: 20px;
     float: left;
     margin: 5px;
     margin-top: 0;
@@ -441,32 +444,39 @@ ul {
     letter-spacing: -1px;
     color: rgba(255, 255, 255, 1);
     text-transform: uppercase;
+    width: 100%;
 }
 
 .wrapper_list ul li.contenedor_def ul li.definicion h1 {
-    font-size: 20px;
+    font-size: 13px;
     width: 100%;
     float: left;
     margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    height: 16px;
 }
 
 .wrapper_list ul li p {
-    font-size: 11px;
+    font-size: 15px;
     margin: auto;
     float: left;
     color: rgba(255, 255, 255, 0.8);
 }
 
 .wrapper_list ul li.contenedor_def ul li.definicion p {
-    font-size: 10px;
+    font-size: 16px;
+    font-weight: bold;
     width: 100%;
     float: left;
+    color: rgba(255, 255, 255, 1);
+    height: 44px;
+    line-height: 22px;
 }
 
 /****************************/
 
 #slider {
-    width: 140px;
+    width: 120px;
     height: 17px;
     position: relative;
     margin: 0;
@@ -489,7 +499,7 @@ ul {
 }
 
 #slider .bar {
-    width: 128px;
+    width: 108px;
     height: 5px;
     background: rgba(180, 220, 0, 0.9);
     position: relative;
@@ -509,7 +519,7 @@ ul {
 #slider .highlight {
     height: 2px;
     position: absolute;
-    width: 128px;
+    width: 108px;
     top: 6px;
     left: 6px;
 
@@ -591,4 +601,13 @@ input[type="range"]::-webkit-slider-thumb {
     background: none;
     border: none;
     width: 130px;
+}
+
+.meaning {
+    font-weight:bold;
+}
+
+.botonenviar {
+   float: right;
+   padding-top: 45px;
 }
