@@ -9,9 +9,9 @@ import com.paradigmatecnologico.disambiguatorWeb.domain.Scores;
  */
 public interface ScoresService {
 
-    public Scores getScores(String domain, String topic, String word, String synset);
+    public Scores getScores(String domain, String pos, String topic, String word, String synset);
 
     public void saveScores(Scores scores);
 
-    public boolean doesScoreExist(String domain, String topic, String word, String synset);
+    public boolean doesScoreExist(String domain, String pos, String topic, String word, String synset);
 }

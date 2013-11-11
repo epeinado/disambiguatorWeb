@@ -54,7 +54,7 @@
         <!--Menu END-->
     </div>
 </div>
-<form id="form" action="/main.html" method="get">
+<form id="form" action="main.html" method="get">
     <div id="midrow">
         <div id="container">
             <div class="box">

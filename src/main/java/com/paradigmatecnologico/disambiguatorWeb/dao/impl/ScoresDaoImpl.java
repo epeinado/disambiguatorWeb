@@ -46,13 +46,15 @@ public class ScoresDaoImpl implements ScoresDao {
     }
 
     @Transactional(readOnly = true)
-    public Scores getScores(String domain, String topic, String word, String synset) {
+    public Scores getScores(String domain, String pos, String topic, String word, String synset) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Scores> query = em.createQuery("select s from Scores s where s.domain = :domain" +
                 " and s.topic = :topic" +
+                " and s.pos = :pos" +
                 " and s.word = :word" +
                 " and s.synset = :synset", Scores.class);
         query.setParameter("domain", domain);
+        query.setParameter("pos", pos);
         query.setParameter("topic", topic);
         query.setParameter("word", word);
         query.setParameter("synset", synset);
@@ -60,13 +62,15 @@ public class ScoresDaoImpl implements ScoresDao {
     }
 
     @Transactional(readOnly = true)
-    public boolean doesScoreExist(String domain, String topic, String word, String synset) {
+    public boolean doesScoreExist(String domain, String pos, String topic, String word, String synset) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Scores> query = em.createQuery("select s from Scores s where s.domain = :domain" +
                 " and s.topic = :topic" +
+                " and s.pos = :pos" +
                 " and s.word = :word" +
                 " and s.synset = :synset", Scores.class);
         query.setParameter("domain", domain);
+        query.setParameter("pos", pos);
         query.setParameter("topic", topic);
         query.setParameter("word", word);
         query.setParameter("synset", synset);
@@ -89,8 +93,8 @@ public class ScoresDaoImpl implements ScoresDao {
     public void saveOrUpdateScores(Scores scores) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        if (doesScoreExist(scores.getDomain(), scores.getTopic(), scores.getWord(), scores.getSynset())) {
-            Scores aux = getScores(scores.getDomain(), scores.getTopic(), scores.getWord(), scores.getSynset());
+        if (doesScoreExist(scores.getDomain(), scores.getPos(), scores.getTopic(), scores.getWord(), scores.getSynset())) {
+            Scores aux = getScores(scores.getDomain(), scores.getPos(), scores.getTopic(), scores.getWord(), scores.getSynset());
             aux.setPositive(scores.getPositive());
             aux.setNegative(scores.getNegative());
             em.merge(aux);

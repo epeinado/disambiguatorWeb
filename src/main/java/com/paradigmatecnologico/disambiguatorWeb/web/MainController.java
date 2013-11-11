@@ -50,7 +50,7 @@ public class MainController {
         return rest.getForObject(URL, WordInformation.class, params);
     }
 
-    @RequestMapping(value="/main.html", method = RequestMethod.GET)
+    @RequestMapping(value="main.html", method = RequestMethod.GET)
     public ModelAndView main(@RequestParam("word") String word,
     @RequestParam("topic") String topic, @RequestParam("domain") String domain) {
         ModelMap model = new ModelMap();
@@ -59,9 +59,9 @@ public class MainController {
         model.addAttribute("domain", domain);
         Collection<Synset> synsets = getWordInformation(word, "english").getSynsets().values();
         for(Synset synset:synsets) {
-            synset.setTagged(scoresService.doesScoreExist(domain, topic, word, synset.getSynset()));
+            synset.setTagged(scoresService.doesScoreExist(domain, synset.getPos(), topic, word, synset.getSynset()));
             if (synset.isTagged()) {
-                Scores aux = scoresService.getScores(domain, topic, word, synset.getSynset());
+                Scores aux = scoresService.getScores(domain, synset.getPos(), topic, word, synset.getSynset());
                 Sentiment sentiment = new Sentiment(aux.getPositive(), aux.getNegative());
                 synset.setSentiment(sentiment);
             }

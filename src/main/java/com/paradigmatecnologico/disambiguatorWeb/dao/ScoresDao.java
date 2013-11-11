@@ -12,10 +12,10 @@ import javax.persistence.EntityManagerFactory;
 public interface ScoresDao {
     public void setEmf(EntityManagerFactory em);
 
-    public Scores getScores(String domain, String topic, String word, String synset);
+    public Scores getScores(String domain, String pos,  String topic, String word, String synset);
 
     public void saveOrUpdateScores(Scores scores);
 
-    public boolean doesScoreExist(String domain, String topic, String word, String synset);
+    public boolean doesScoreExist(String domain, String pos, String topic, String word, String synset);
 
 }
