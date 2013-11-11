@@ -70,7 +70,7 @@ public class MainController {
         return new ModelAndView("main", model);
     }
 
-    @RequestMapping(value="/saveResults.html", method = RequestMethod.GET)
+    @RequestMapping(value="saveResults.html", method = RequestMethod.GET)
     public String saveResults(Scores scores) {
         scoresService.saveScores(scores);
         return "redirect:main.html?domain="+scores.getDomain()+"&topic="+scores.getTopic()+"&word="+scores.getWord();
