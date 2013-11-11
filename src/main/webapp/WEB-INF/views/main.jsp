@@ -88,7 +88,7 @@
 
         <c:forEach var="loop" items="${synsets}">
 
-            <form id="myForm" action="/saveResults.html" method="get">
+            <form id="myForm" action="saveResults.html" method="get">
                 <input type="hidden" name="synset" value="${loop.synset}">
                 <input type="hidden" name="word" value="${word}">
                 <input type="hidden" name="topic" value="${topic}">
