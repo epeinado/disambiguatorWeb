@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
     <link rel="shortcut icon" href="images/favicon.gif"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../../css/buttons.css"/>
+    <link rel="stylesheet" type="text/css" href="css/buttons.css"/>
 </head>
 <body>
 <!--Header Begin-->
