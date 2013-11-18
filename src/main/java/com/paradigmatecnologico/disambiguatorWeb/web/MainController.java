@@ -32,7 +32,7 @@ public class MainController {
     @Autowired
     ScoresService scoresService;
 
-    private static String URL = "http://54.200.220.111:8888/get_word_information?word={word}&language={language}";
+    private static String URL = "http://54.201.83.202:8888/get_word_information?word={word}&language={language}";
 
 
     private WordInformation getWordInformation(String word, String language) {
@@ -74,6 +74,5 @@ public class MainController {
     public String saveResults(Scores scores) {
         scoresService.saveScores(scores);
         return "redirect:main.html?domain="+scores.getDomain()+"&topic="+scores.getTopic()+"&word="+scores.getWord();
-//        System.out.println("miau");
     }
 }
