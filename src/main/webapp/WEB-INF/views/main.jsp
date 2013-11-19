@@ -43,14 +43,14 @@
     <div class="center">
         <div id="logo"><a href="#">Disambiguator</a></div>
         <!--Menu Begin-->
-        <%--<div id="menu">--%>
-        <%--<ul>--%>
-        <%--<li><a class="active" href="index.html"><span>Home</span></a></li>--%>
-        <%--<li><a href="about.html"><span>About</span></a></li>--%>
+        <div id="menu">
+        <ul>
+        <li><a class="active" href="index.html"><span>Main</span></a></li>
+        <li><a href="show.html"><span>Show</span></a></li>
         <%--<li><a href="#"><span>Services</span></a></li>--%>
         <%--<li><a href="#"><span>Contact</span></a></li>--%>
-        <%--</ul>--%>
-        <%--</div>--%>
+        </ul>
+        </div>
         <!--Menu END-->
     </div>
 </div>

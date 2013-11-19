@@ -6,6 +6,8 @@ import com.paradigmatecnologico.disambiguatorWeb.service.ScoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * User: Esther
  * Date: 05/11/13
@@ -18,6 +20,10 @@ public class ScoresServiceImpl implements ScoresService {
 
     public Scores getScores(String domain, String pos, String topic, String word, String synset) {
         return scoresDao.getScores(domain, pos, topic, word, synset);
+    }
+
+    public List<Scores> getAllScores() {
+        return scoresDao.getAllScores();
     }
 
     public void saveScores(Scores scores) {

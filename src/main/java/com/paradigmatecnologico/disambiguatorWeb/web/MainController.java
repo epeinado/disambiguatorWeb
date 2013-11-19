@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User: epeinado
@@ -72,7 +69,21 @@ public class MainController {
 
     @RequestMapping(value="saveResults.html", method = RequestMethod.GET)
     public String saveResults(Scores scores) {
+        scores.setDate(new Date());
         scoresService.saveScores(scores);
         return "redirect:main.html?domain="+scores.getDomain()+"&topic="+scores.getTopic()+"&word="+scores.getWord();
+    }
+
+    @RequestMapping(value="show.html", method = RequestMethod.GET)
+    public ModelAndView show() {
+        List<Scores> scores = scoresService.getAllScores();
+        ModelMap model = new ModelMap();
+        model.addAttribute("scores", scores);
+        return new ModelAndView("show", model);
+    }
+
+    @RequestMapping(value="index.html", method = RequestMethod.GET)
+    public String index() {
+        return "index";
     }
 }

@@ -1,6 +1,7 @@
 package com.paradigmatecnologico.disambiguatorWeb.domain;
 
 import javax.persistence.Entity;
+import java.util.Date;
 
 /**
  * User: Esther
@@ -19,6 +20,17 @@ public class Scores {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    private Date date;
+
+    @javax.persistence.Column(name = "date", nullable = false, insertable = true, updatable = true)
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     private String synset;

@@ -3,6 +3,7 @@ package com.paradigmatecnologico.disambiguatorWeb.dao;
 import com.paradigmatecnologico.disambiguatorWeb.domain.Scores;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.List;
 
 /**
  * User: Esther
@@ -13,6 +14,8 @@ public interface ScoresDao {
     public void setEmf(EntityManagerFactory em);
 
     public Scores getScores(String domain, String pos,  String topic, String word, String synset);
+
+    public List<Scores> getAllScores();
 
     public void saveOrUpdateScores(Scores scores);
 

@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 /**
  * User: Esther
@@ -58,7 +59,18 @@ public class ScoresDaoImpl implements ScoresDao {
         query.setParameter("topic", topic);
         query.setParameter("word", word);
         query.setParameter("synset", synset);
-        return query.getSingleResult();
+        Scores result = query.getSingleResult();
+        em.close();
+        return result;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Scores> getAllScores() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Scores> query = em.createQuery("select s from Scores s ", Scores.class);
+        List<Scores> result = query.getResultList();
+        em.close();
+        return result;
     }
 
     @Transactional(readOnly = true)
@@ -74,7 +86,9 @@ public class ScoresDaoImpl implements ScoresDao {
         query.setParameter("topic", topic);
         query.setParameter("word", word);
         query.setParameter("synset", synset);
-        return query.getResultList().size() > 0;
+        boolean result = query.getResultList().size() > 0;
+        em.close();
+        return result;
     }
 
 //    private boolean exists (Scores scores) {
