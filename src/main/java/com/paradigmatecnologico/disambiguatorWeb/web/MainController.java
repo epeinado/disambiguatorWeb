@@ -6,6 +6,7 @@ import com.paradigmatecnologico.disambiguatorWeb.domain.Synset;
 import com.paradigmatecnologico.disambiguatorWeb.domain.WordInformation;
 import com.paradigmatecnologico.disambiguatorWeb.service.ScoresService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,10 @@ public class MainController {
     @Autowired
     ScoresService scoresService;
 
-    private static String URL = "http://54.201.83.202:8888/get_word_information?word={word}&language={language}";
+    @Value("#{jdbcProperties['url.sentiment.address']}")
+    private String URL;
+
+//    private String URL = urlSentiment +"get_word_information?word={word}&language={language}";
 
 
     private WordInformation getWordInformation(String word, String language) {
@@ -85,5 +89,22 @@ public class MainController {
     @RequestMapping(value="index.html", method = RequestMethod.GET)
     public String index() {
         return "index";
+    }
+
+
+    public ScoresService getScoresService() {
+        return scoresService;
+    }
+
+    public void setScoresService(ScoresService scoresService) {
+        this.scoresService = scoresService;
+    }
+
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 }
