@@ -6,6 +6,7 @@ import com.paradigmatecnologico.disambiguatorWeb.service.ScoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,5 +33,17 @@ public class ScoresServiceImpl implements ScoresService {
 
     public boolean doesScoreExist(String domain, String pos, String topic, String word, String synset) {
         return scoresDao.doesScoreExist(domain, pos, topic, word, synset);
+    }
+
+    public void createDuplicateNewDomain(ArrayList<Integer> list, String domain) {
+        scoresDao.createduplicateNewDomain(list, domain);
+    }
+
+    public void deleteList(ArrayList<Integer> list) {
+        scoresDao.deleteList(list);
+    }
+
+    public void updateValue(Integer id, String domain, String topic, String word, Float positive, Float negative) {
+        scoresDao.updateValue(id, domain, topic, word, positive, negative);
     }
 }

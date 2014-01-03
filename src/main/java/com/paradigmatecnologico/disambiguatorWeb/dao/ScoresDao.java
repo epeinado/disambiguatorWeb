@@ -3,6 +3,7 @@ package com.paradigmatecnologico.disambiguatorWeb.dao;
 import com.paradigmatecnologico.disambiguatorWeb.domain.Scores;
 
 import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,4 +22,9 @@ public interface ScoresDao {
 
     public boolean doesScoreExist(String domain, String pos, String topic, String word, String synset);
 
+    public void createduplicateNewDomain(ArrayList<Integer> list, String domain);
+
+    public void deleteList(ArrayList<Integer> list);
+
+    public void updateValue(Integer id, String domain, String topic, String word, Float positive, Float negative);
 }

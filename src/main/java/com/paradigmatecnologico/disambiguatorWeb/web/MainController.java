@@ -51,34 +51,66 @@ public class MainController {
         return rest.getForObject(URL, WordInformation.class, params);
     }
 
-    @RequestMapping(value="main.html", method = RequestMethod.GET)
+    @RequestMapping(value = "main.html", method = RequestMethod.GET)
     public ModelAndView main(@RequestParam("word") String word,
-    @RequestParam("topic") String topic, @RequestParam("domain") String domain) {
+                             @RequestParam("topic") String topic, @RequestParam("domain") String domain) {
         ModelMap model = new ModelMap();
         model.addAttribute("word", word);
         model.addAttribute("topic", topic);
         model.addAttribute("domain", domain);
         Collection<Synset> synsets = getWordInformation(word, "english").getSynsets().values();
-        for(Synset synset:synsets) {
+        for (Synset synset : synsets) {
             synset.setTagged(scoresService.doesScoreExist(domain, synset.getPos(), topic, word, synset.getSynset()));
             if (synset.isTagged()) {
                 Scores aux = scoresService.getScores(domain, synset.getPos(), topic, word, synset.getSynset());
                 Sentiment sentiment = new Sentiment(aux.getPositive(), aux.getNegative());
                 synset.setSentiment(sentiment);
             }
+            if (Float.valueOf(synset.getSentiment().getPositive()) < 1) {
+                synset.getSentiment().setPositive(String.valueOf(Float.valueOf(synset.getSentiment().getPositive()) * 100));
+            }
+            if (Float.valueOf(synset.getSentiment().getNegative()) < 1) {
+                synset.getSentiment().setNegative(String.valueOf(Float.valueOf(synset.getSentiment().getNegative()) * 100));
+            }
         }
         model.addAttribute("synsets", synsets);
         return new ModelAndView("main", model);
     }
 
-    @RequestMapping(value="saveResults.html", method = RequestMethod.GET)
+    @RequestMapping(value = "saveResults.html", method = RequestMethod.GET)
     public String saveResults(Scores scores) {
         scores.setDate(new Date());
+        if (scores.getPositive() > 1) {
+            scores.setPositive((scores.getPositive() / 100));
+        }
+        if (scores.getNegative() > 1) {
+            scores.setNegative((scores.getNegative() / 100));
+        }
         scoresService.saveScores(scores);
-        return "redirect:main.html?domain="+scores.getDomain()+"&topic="+scores.getTopic()+"&word="+scores.getWord();
+        return "redirect:main.html?domain=" + scores.getDomain() + "&topic=" + scores.getTopic() + "&word=" + scores.getWord();
     }
 
-    @RequestMapping(value="show.html", method = RequestMethod.GET)
+    @RequestMapping(value = "duplicate.html", method = RequestMethod.GET)
+    public String duplicate(@RequestParam(value="list") ArrayList<Integer> list, String domain) {
+        scoresService.createDuplicateNewDomain(list, domain);
+        return "redirect:show.html";
+    }
+
+    @RequestMapping(value = "delete.html", method = RequestMethod.GET)
+    public String delete(@RequestParam(value="list") ArrayList<Integer> list) {
+        scoresService.deleteList(list);
+        return "redirect:show.html";
+    }
+
+    @RequestMapping(value = "edit.html", method = RequestMethod.POST)
+        public String edit(@RequestParam("modalid") Integer id, @RequestParam("modalword") String word,
+                                 @RequestParam("modaltopic") String topic, @RequestParam("modaldomain") String domain,
+                                 @RequestParam("positive") Float positive, @RequestParam("negative") Float negative) {
+        scoresService.updateValue(id, domain, topic, word, positive, negative);
+        return "redirect:show.html";
+    }
+
+    @RequestMapping(value = "show.html", method = RequestMethod.GET)
     public ModelAndView show() {
         List<Scores> scores = scoresService.getAllScores();
         ModelMap model = new ModelMap();
@@ -86,7 +118,7 @@ public class MainController {
         return new ModelAndView("show", model);
     }
 
-    @RequestMapping(value="index.html", method = RequestMethod.GET)
+    @RequestMapping(value = "index.html", method = RequestMethod.GET)
     public String index() {
         return "index";
     }

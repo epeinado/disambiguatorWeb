@@ -310,7 +310,7 @@ a.button {
 
 .textbox {
     float: left;
-    padding: 50px 0px;
+    padding: 20px 0px;
     width: 1200px;
 }
 
@@ -610,4 +610,46 @@ input[type="range"]::-webkit-slider-thumb {
 .botonenviar {
    float: right;
    padding-top: 45px;
+}
+
+.odd {background-color: rgba(169, 169, 169, 0.98); font-size: small; padding-left: 3px;}
+.even {background-color: #d5d5d5; font-size: small; padding-left: 3px}
+
+.modal{z-index: 1001;
+	position: fixed;
+	padding:20px;
+	padding-top: 40px;
+	width:	780px;
+	height: 340px;
+	top: -2000px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+	text-align:center;
+	color:#000;
+
+    text-align:center;
+    	color:#000;
+    background-color: ghostwhite;
+    	/*background: -moz-linear-gradient(top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); *//* FF3.6+ */
+    	/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(10, 10, 10, 0.9)), color-stop(100%,rgba(10, 10, 10, 0.9))); *//* Chrome,Safari4+ */
+    	/*background: -webkit-linear-gradient(top, rgba(10, 10, 10, 0.9) 0%,rgba(10, 10, 10, 0.9) 100%); *//* Chrome10+,Safari5.1+ */
+    	/*background: -o-linear-gradient(top, rgba(10, 10, 10, 0.9) 0%,rgba(10, 10, 10, 0.9) 100%)); *//* Opera 11.10+ */
+    	/*background: -ms-linear-gradient(top, rgba(10, 10, 10, 0.9) 0%,rgba(10, 10, 10, 0.9) 100%); *//* IE10+ */
+    	/*background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9) 0%,rgba(10, 10, 10, 0.9) 100%); *//* W3C */
+    	background-size:auto 100%;
+    	/*border-top: 30px solid rgba(245,157,97,1);*/
+}
+
+.blockOverlay{
+    overflow:none;
+	width:100%;
+	height: 100%;
+	position:fixed;
+	right:0;
+	bottom:0;
+	background-color: rgba(0,0,0,0.5);
+  display:none;
+  z-index:1000;
 }
