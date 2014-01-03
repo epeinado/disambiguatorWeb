@@ -121,7 +121,7 @@ public class ScoresDaoImpl implements ScoresDao {
     public void deleteList(ArrayList<Integer> list) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        for (int id: list) {
+        for (int id : list) {
             Query query = em.createQuery("delete from Scores s where s.id = :id");
             query.setParameter("id", id);
             query.executeUpdate();
@@ -135,8 +135,8 @@ public class ScoresDaoImpl implements ScoresDao {
         old.setDomain(domain);
         old.setTopic(topic);
         old.setWord(word);
-        old.setPositive(positive/100);
-        old.setNegative(negative/100);
+        old.setPositive(positive / 100);
+        old.setNegative(negative / 100);
         saveOrUpdateScores(old);
     }
 
@@ -156,13 +156,17 @@ public class ScoresDaoImpl implements ScoresDao {
     public void saveOrUpdateScores(Scores scores) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        if (doesScoreExist(scores.getDomain(), scores.getPos(), scores.getTopic(), scores.getWord(), scores.getSynset())) {
-            Scores aux = getScores(scores.getDomain(), scores.getPos(), scores.getTopic(), scores.getWord(), scores.getSynset());
-            aux.setPositive(scores.getPositive());
-            aux.setNegative(scores.getNegative());
-            em.merge(aux);
+        if (scores.getId() != 0) {
+            em.merge(scores);
         } else {
-            em.persist(scores);
+            if (doesScoreExist(scores.getDomain(), scores.getPos(), scores.getTopic(), scores.getWord(), scores.getSynset())) {
+                Scores aux = getScores(scores.getDomain(), scores.getPos(), scores.getTopic(), scores.getWord(), scores.getSynset());
+                aux.setPositive(scores.getPositive());
+                aux.setNegative(scores.getNegative());
+                em.merge(aux);
+            } else {
+                em.persist(scores);
+            }
         }
         em.getTransaction().commit();
         em.close();
