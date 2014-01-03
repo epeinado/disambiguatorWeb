@@ -277,7 +277,7 @@
             <tr>
                 <td><input type="text" name="modaldomain" id="modaldomain" value=""></td>
                 <td><input type="text" name="modaltopic" id="modaltopic" value=""></td>
-                <td><input type="text" name="modalword" id="modalword" value=""></td>
+                <td><input type="text" name="modalword" id="modalword" value=""  readonly="" style="background-color: gainsboro"></td>
             </tr>
             </tbody>
         </table>
