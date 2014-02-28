@@ -60,8 +60,8 @@
             <div class="box">
                 <h1>Choose domain</h1>
                 <select name="domain">
-                    <option value="hotel" >hotel</option>
-                    <option value="electronics" selected>electronics</option>
+                    <%--<option value="hotel" >hotel</option>--%>
+                    <option value="finance" selected>finance</option>
                 </select>
             </div>
             <div class="box">
